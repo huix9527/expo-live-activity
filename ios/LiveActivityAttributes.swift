@@ -5,6 +5,8 @@ struct LiveActivityAttributes: ActivityAttributes {
   struct ContentState: Codable, Hashable {
     var title: String
     var subtitle: String?
+    var time: String?
+    var innerThought: String?
     var timerEndDateInMilliseconds: Double?
     var progress: Double?
     var imageName: String?

@@ -157,6 +157,18 @@ import WidgetKit
                 .modifier(ConditionalForegroundViewModifier(color: attributes.subtitleColor))
             }
 
+            if let time = contentState.time {
+              Text(time)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            }
+
+            if let innerThought = contentState.innerThought {
+              Text(innerThought)
+                .font(.subheadline)
+                .italic()
+            }
+
             if effectiveStretch {
               if let date = contentState.timerEndDateInMilliseconds {
                 ProgressView(timerInterval: Date.toTimerInterval(miliseconds: date))
