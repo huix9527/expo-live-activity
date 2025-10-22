@@ -20,6 +20,8 @@ type ProgressBarType =
 export type LiveActivityState = {
   title: string
   subtitle?: string
+  time?: string
+  innerThought?: string
   progressBar?: ProgressBarType
   imageName?: string
   dynamicIslandImageName?: string
@@ -66,6 +68,8 @@ export type LiveActivityConfig = {
   imageAlign?: ImageAlign
   imageSize?: ImageSize
   contentFit?: ImageContentFit
+  timePlaceholder?: string
+  innerThoughtPlaceholder?: string
 }
 
 export type ActivityTokenReceivedEvent = {

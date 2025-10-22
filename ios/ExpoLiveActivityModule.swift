@@ -10,6 +10,12 @@ public class ExpoLiveActivityModule: Module {
     var subtitle: String?
 
     @Field
+    var time: String?
+
+    @Field
+    var innerThought: String?
+
+    @Field
     var progressBar: ProgressBar?
 
     struct ProgressBar: Record {
@@ -66,6 +72,12 @@ public class ExpoLiveActivityModule: Module {
 
     @Field
     var contentFit: String?
+
+    @Field
+    var timePlaceholder: String?
+
+    @Field
+    var innerThoughtPlaceholder: String?
 
     struct PaddingDetails: Record {
       @Field var top: Int?
@@ -230,12 +242,16 @@ public class ExpoLiveActivityModule: Module {
           imagePosition: config.imagePosition,
           imageSize: config.imageSize,
           imageAlign: config.imageAlign,
-          contentFit: config.contentFit
+          contentFit: config.contentFit,
+          timePlaceholder: config.timePlaceholder,
+          innerThoughtPlaceholder: config.innerThoughtPlaceholder
         )
 
         let initialState = LiveActivityAttributes.ContentState(
           title: state.title,
           subtitle: state.subtitle,
+          time: state.time,
+          innerThought: state.innerThought,
           timerEndDateInMilliseconds: state.progressBar?.date,
           progress: state.progressBar?.progress
         )
@@ -272,6 +288,8 @@ public class ExpoLiveActivityModule: Module {
         var newState = LiveActivityAttributes.ContentState(
           title: state.title,
           subtitle: state.subtitle,
+          time: state.time,
+          innerThought: state.innerThought,
           timerEndDateInMilliseconds: state.progressBar?.date,
           progress: state.progressBar?.progress
         )
@@ -299,6 +317,8 @@ public class ExpoLiveActivityModule: Module {
         var newState = LiveActivityAttributes.ContentState(
           title: state.title,
           subtitle: state.subtitle,
+          time: state.time,
+          innerThought: state.innerThought,
           timerEndDateInMilliseconds: state.progressBar?.date,
           progress: state.progressBar?.progress
         )

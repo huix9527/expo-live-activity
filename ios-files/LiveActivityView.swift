@@ -157,16 +157,21 @@ import WidgetKit
                 .modifier(ConditionalForegroundViewModifier(color: attributes.subtitleColor))
             }
 
-            if let time = contentState.time {
-              Text(time)
+            // Time with placeholder support
+            if let timeText = contentState.time ?? attributes.timePlaceholder {
+              Text(timeText)
                 .font(.caption)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(contentState.time != nil ? .primary : .secondary)
+                .modifier(ConditionalForegroundViewModifier(color: attributes.subtitleColor))
             }
 
-            if let innerThought = contentState.innerThought {
-              Text(innerThought)
-                .font(.subheadline)
+            // Inner thought with placeholder support
+            if let thoughtText = contentState.innerThought ?? attributes.innerThoughtPlaceholder {
+              Text(thoughtText)
+                .font(.caption2)
                 .italic()
+                .foregroundStyle(contentState.innerThought != nil ? .primary : .tertiary)
+                .modifier(ConditionalForegroundViewModifier(color: attributes.subtitleColor))
             }
 
             if effectiveStretch {
