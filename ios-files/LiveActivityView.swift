@@ -130,57 +130,67 @@ import WidgetKit
           ?? defaultPadding
       )
 
-      VStack(alignment: .leading) {
-        let position = attributes.imagePosition ?? "right"
-        let isStretch = position.contains("Stretch")
-        let isLeftImage = position.hasPrefix("left")
-        let hasImage = contentState.imageName != nil
-        let effectiveStretch = isStretch && hasImage
+      VStack(alignment: .leading, spacing: 16) {
+        // Time badge at top left
+        if let timeText = contentState.time ?? attributes.timePlaceholder {
+          HStack(spacing: 6) {
+            Circle()
+              .fill(Color.green)
+              .frame(width: 8, height: 8)
 
-        HStack(alignment: .center) {
-          if hasImage, isLeftImage {
-            if let imageName = contentState.imageName {
-              alignedImage(imageName: imageName)
-              Spacer()
-            }
+            Text(timeText)
+              .font(.subheadline)
+              .fontWeight(.medium)
+              .foregroundStyle(.white)
           }
+          .padding(.horizontal, 12)
+          .padding(.vertical, 8)
+          .background(
+            Capsule()
+              .fill(Color.white.opacity(0.2))
+          )
+        }
 
-          VStack(alignment: .leading, spacing: 2) {
-            Text(contentState.title)
-              .font(.title2)
-              .fontWeight(.semibold)
-              .foregroundStyle(.red)
+        Spacer()
 
-            if let subtitle = contentState.subtitle {
-              Text(subtitle)
-                .font(.title3)
-                .modifier(ConditionalForegroundViewModifier(color: attributes.subtitleColor))
-            }
+        // Title in the middle
+        Text(contentState.title)
+          .font(.title2)
+          .fontWeight(.semibold)
+          .foregroundStyle(.white)
+          .frame(maxWidth: .infinity, alignment: .leading)
 
-            // Time with placeholder support
-            if let timeText = contentState.time ?? attributes.timePlaceholder {
-              Text(timeText)
-                .font(.caption)
-                .foregroundStyle(contentState.time != nil ? .primary : .secondary)
-                .modifier(ConditionalForegroundViewModifier(color: attributes.subtitleColor))
-            }
+        if let subtitle = contentState.subtitle {
+          Text(subtitle)
+            .font(.body)
+            .foregroundStyle(.white.opacity(0.8))
+        }
 
-            // Inner thought with placeholder support
-            if let thoughtText = contentState.innerThought ?? attributes.innerThoughtPlaceholder {
-              Text(thoughtText)
-                .font(.caption2)
-                .italic()
-                .foregroundStyle(contentState.innerThought != nil ? .primary : .tertiary)
-                .modifier(ConditionalForegroundViewModifier(color: attributes.subtitleColor))
-            }
-          }
-          .layoutPriority(1)
+        Spacer()
 
-          if hasImage, !isLeftImage { // right side (default)
-            Spacer()
+        // Inner thought bubble at bottom with image
+        if let thoughtText = contentState.innerThought ?? attributes.innerThoughtPlaceholder {
+          HStack(alignment: .center, spacing: 12) {
+            // Dog emoji/image on the left
             if let imageName = contentState.imageName {
-              alignedImage(imageName: imageName)
+              Image.dynamic(assetNameOrPath: imageName)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 40, height: 40)
+                .clipShape(Circle())
             }
+
+            // Inner thought text bubble
+            Text(thoughtText)
+              .font(.callout)
+              .foregroundStyle(.white)
+              .padding(.horizontal, 16)
+              .padding(.vertical, 12)
+              .background(
+                RoundedRectangle(cornerRadius: 20)
+                  .fill(Color.white.opacity(0.2))
+              )
+              .frame(maxWidth: .infinity, alignment: .leading)
           }
         }
       }
