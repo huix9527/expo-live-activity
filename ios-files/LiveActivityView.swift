@@ -130,7 +130,7 @@ import WidgetKit
           ?? defaultPadding
       )
 
-      VStack(alignment: .leading, spacing: 16) {
+      VStack(alignment: .leading, spacing: 12) {
         // Time badge at top left
         if let timeText = contentState.time ?? attributes.timePlaceholder {
           HStack(spacing: 6) {
@@ -151,8 +151,6 @@ import WidgetKit
           )
         }
 
-        Spacer()
-
         // Title in the middle
         Text(contentState.title)
           .font(.title2)
@@ -165,8 +163,6 @@ import WidgetKit
             .font(.body)
             .foregroundStyle(.white.opacity(0.8))
         }
-
-        Spacer()
 
         // Inner thought bubble at bottom with image
         if let thoughtText = contentState.innerThought ?? attributes.innerThoughtPlaceholder {
