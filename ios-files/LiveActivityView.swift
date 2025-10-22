@@ -149,7 +149,7 @@ import WidgetKit
             Text(contentState.title)
               .font(.title2)
               .fontWeight(.semibold)
-              .modifier(ConditionalForegroundViewModifier(color: attributes.titleColor))
+              .foregroundStyle(.red)
 
             if let subtitle = contentState.subtitle {
               Text(subtitle)
