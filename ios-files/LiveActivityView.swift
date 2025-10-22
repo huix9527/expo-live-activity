@@ -173,18 +173,6 @@ import WidgetKit
                 .foregroundStyle(contentState.innerThought != nil ? .primary : .tertiary)
                 .modifier(ConditionalForegroundViewModifier(color: attributes.subtitleColor))
             }
-
-            if effectiveStretch {
-              if let date = contentState.timerEndDateInMilliseconds {
-                ProgressView(timerInterval: Date.toTimerInterval(miliseconds: date))
-                  .tint(progressViewTint)
-                  .modifier(ConditionalForegroundViewModifier(color: attributes.progressViewLabelColor))
-              } else if let progress = contentState.progress {
-                ProgressView(value: progress)
-                  .tint(progressViewTint)
-                  .modifier(ConditionalForegroundViewModifier(color: attributes.progressViewLabelColor))
-              }
-            }
           }
           .layoutPriority(1)
 
@@ -193,18 +181,6 @@ import WidgetKit
             if let imageName = contentState.imageName {
               alignedImage(imageName: imageName)
             }
-          }
-        }
-
-        if !effectiveStretch {
-          if let date = contentState.timerEndDateInMilliseconds {
-            ProgressView(timerInterval: Date.toTimerInterval(miliseconds: date))
-              .tint(progressViewTint)
-              .modifier(ConditionalForegroundViewModifier(color: attributes.progressViewLabelColor))
-          } else if let progress = contentState.progress {
-            ProgressView(value: progress)
-              .tint(progressViewTint)
-              .modifier(ConditionalForegroundViewModifier(color: attributes.progressViewLabelColor))
           }
         }
       }
