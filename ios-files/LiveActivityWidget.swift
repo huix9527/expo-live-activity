@@ -6,6 +6,8 @@ struct LiveActivityAttributes: ActivityAttributes {
   struct ContentState: Codable, Hashable {
     var title: String
     var subtitle: String?
+    var time: String?
+    var innerThought: String?
     var timerEndDateInMilliseconds: Double?
     var progress: Double?
     var imageName: String?
@@ -26,6 +28,8 @@ struct LiveActivityAttributes: ActivityAttributes {
   var imageSize: Int?
   var imageAlign: String?
   var contentFit: String?
+  var timePlaceholder: String?
+  var innerThoughtPlaceholder: String?
 
   enum DynamicIslandTimerType: String, Codable {
     case circular
