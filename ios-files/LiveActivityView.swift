@@ -132,65 +132,63 @@ import WidgetKit
 
       VStack(alignment: .leading, spacing: 12) {
         // Time badge and logo row
-        if let timeText = contentState.time ?? "--:--" {
-          HStack {
-            // Time badge at left
-            HStack(spacing: 6) {
-              Circle()
-                .fill(Color.green)
-                .frame(width: 8, height: 8)
+        let timeText = contentState.time ?? "--:--"
+        HStack {
+          // Time badge at left
+          HStack(spacing: 6) {
+            Circle()
+              .fill(Color.green)
+              .frame(width: 8, height: 8)
 
-              Text(timeText)
-                .font(.subheadline)
-                .fontWeight(.medium)
-                .foregroundStyle(.white)
-            }
-            .padding(.horizontal, 10)
-            .padding(.vertical, 6)
-            .background(
-              Capsule()
-                .fill(Color(hex: "D6FFA3").opacity(0.2))
-            )
-
-            Spacer()
-
-            // Logo at right
-            Image("logo")
-              .resizable()
-              .scaledToFit()
-              .frame(width: 72, height: 16)
+            Text(timeText)
+              .font(.subheadline)
+              .fontWeight(.medium)
+              .foregroundStyle(.white)
           }
+          .padding(.horizontal, 10)
+          .padding(.vertical, 6)
+          .background(
+            Capsule()
+              .fill(Color(hex: "D6FFA3").opacity(0.2))
+          )
+
+          Spacer()
+
+          // Logo at right
+          Image("logo")
+            .resizable()
+            .scaledToFit()
+            .frame(width: 72, height: 16)
         }
 
         // Inner thought bubble in the middle (where title was)
-        if let thoughtText = contentState.innerThought ?? "..." {
-          HStack(alignment: .center, spacing: 12) {
-            // Dog emoji/image on the left
-            if let imageName = contentState.imageName {
-              Image.dynamic(assetNameOrPath: imageName)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 48, height: 48)
-                .clipShape(Circle())
-            }
-
-            // Inner thought text bubble
-            Text(thoughtText)
-              .font(.body)
-              .foregroundStyle(.white)
-              .padding(.horizontal, 16)
-              .padding(.vertical, 12)
-              .background(
-                Image("ThoughtBg")
-                  .resizable(capInsets: EdgeInsets(
-                    top: 15,
-                    leading: 20,
-                    bottom: 15,
-                    trailing: 20
-                  ))
-              )
-              .frame(maxWidth: .infinity, alignment: .leading)
+        let thoughtText = contentState.innerThought ?? "..."
+        HStack(alignment: .center, spacing: 12) {
+          // Dog emoji/image on the left
+          if let imageName = contentState.imageName {
+            Image.dynamic(assetNameOrPath: imageName)
+              .resizable()
+              .scaledToFit()
+              .frame(width: 48, height: 48)
+              .clipShape(Circle())
           }
+
+          // Inner thought text bubble
+          Text(thoughtText)
+            .font(.body)
+            .foregroundStyle(.white)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
+            .background(
+              Image("ThoughtBg")
+                .resizable(capInsets: EdgeInsets(
+                  top: 15,
+                  leading: 20,
+                  bottom: 15,
+                  trailing: 20
+                ))
+            )
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
       }
       .padding(EdgeInsets(top: top, leading: leading, bottom: bottom, trailing: trailing))
