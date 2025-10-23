@@ -79,6 +79,9 @@ public class ExpoLiveActivityModule: Module {
     @Field
     var innerThoughtPlaceholder: String?
 
+    @Field
+    var petSpecies: String?
+
     struct PaddingDetails: Record {
       @Field var top: Int?
       @Field var bottom: Int?
@@ -244,7 +247,8 @@ public class ExpoLiveActivityModule: Module {
           imageAlign: config.imageAlign,
           contentFit: config.contentFit,
           timePlaceholder: config.timePlaceholder,
-          innerThoughtPlaceholder: config.innerThoughtPlaceholder
+          innerThoughtPlaceholder: config.innerThoughtPlaceholder,
+          petSpecies: config.petSpecies
         )
 
         let initialState = LiveActivityAttributes.ContentState(

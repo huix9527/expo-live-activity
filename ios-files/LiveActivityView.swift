@@ -151,20 +151,7 @@ import WidgetKit
           )
         }
 
-        // Title in the middle
-        Text(contentState.title)
-          .font(.title3)
-          .fontWeight(.semibold)
-          .foregroundStyle(.white)
-          .frame(maxWidth: .infinity, alignment: .leading)
-
-        if let subtitle = contentState.subtitle {
-          Text(subtitle)
-            .font(.body)
-            .foregroundStyle(.white.opacity(0.8))
-        }
-
-        // Inner thought bubble at bottom with image
+        // Inner thought bubble in the middle (where title was)
         if let thoughtText = contentState.innerThought ?? attributes.innerThoughtPlaceholder {
           HStack(alignment: .center, spacing: 12) {
             // Dog emoji/image on the left

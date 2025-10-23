@@ -29,6 +29,7 @@ struct LiveActivityAttributes: ActivityAttributes {
   var contentFit: String?
   var timePlaceholder: String?
   var innerThoughtPlaceholder: String?
+  var petSpecies: String?
 
   enum DynamicIslandTimerType: String, Codable {
     case circular

@@ -70,6 +70,7 @@ export type LiveActivityConfig = {
   contentFit?: ImageContentFit
   timePlaceholder?: string
   innerThoughtPlaceholder?: string
+  petSpecies?: string
 }
 
 export type ActivityTokenReceivedEvent = {
