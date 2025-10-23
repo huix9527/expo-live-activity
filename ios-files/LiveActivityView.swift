@@ -130,7 +130,7 @@ import WidgetKit
           ?? defaultPadding
       )
 
-      VStack(alignment: .leading, spacing: 12) {
+      VStack(alignment: .leading, spacing: 16) {
         // Time badge at top left
         if let timeText = contentState.time ?? attributes.timePlaceholder {
           HStack(spacing: 6) {
@@ -143,8 +143,8 @@ import WidgetKit
               .fontWeight(.medium)
               .foregroundStyle(.white)
           }
-          .padding(.horizontal, 12)
-          .padding(.vertical, 8)
+          .padding(.horizontal, 10)
+          .padding(.vertical, 6)
           .background(
             Capsule()
               .fill(Color.white.opacity(0.2))
@@ -153,7 +153,7 @@ import WidgetKit
 
         // Title in the middle
         Text(contentState.title)
-          .font(.title2)
+          .font(.title3)
           .fontWeight(.semibold)
           .foregroundStyle(.white)
           .frame(maxWidth: .infinity, alignment: .leading)
@@ -172,25 +172,40 @@ import WidgetKit
               Image.dynamic(assetNameOrPath: imageName)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 40, height: 40)
+                .frame(width: 48, height: 48)
                 .clipShape(Circle())
             }
 
             // Inner thought text bubble
             Text(thoughtText)
-              .font(.callout)
+              .font(.body)
               .foregroundStyle(.white)
               .padding(.horizontal, 16)
               .padding(.vertical, 12)
               .background(
-                RoundedRectangle(cornerRadius: 20)
-                  .fill(Color.white.opacity(0.2))
+                Image("ThoughtBg")
+                  .resizable(capInsets: EdgeInsets(
+                    top: 15,
+                    leading: 20,
+                    bottom: 15,
+                    trailing: 20
+                  ))
               )
               .frame(maxWidth: .infinity, alignment: .leading)
           }
         }
       }
       .padding(EdgeInsets(top: top, leading: leading, bottom: bottom, trailing: trailing))
+      .background(
+        LinearGradient(
+          colors: [
+            Color(hex: "001A72"),  // 深蓝
+            Color(hex: "38ACDD")   // 浅蓝
+          ],
+          startPoint: .top,
+          endPoint: .bottom
+        )
+      )
     }
   }
 #endif
