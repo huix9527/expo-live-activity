@@ -130,20 +130,20 @@ import WidgetKit
           ?? defaultPadding
       )
 
-      VStack(alignment: .leading, spacing: 12) {
+      VStack(alignment: .leading, spacing: 16) {
         // Time badge and logo row
         let timeText = contentState.time ?? "--:--"
         HStack {
           // Time badge at left
           HStack(spacing: 6) {
             Circle()
-              .fill(Color.green)
+              .fill(Color(hex:"D6FFA3"))
               .frame(width: 8, height: 8)
 
             Text(timeText)
               .font(.subheadline)
               .fontWeight(.medium)
-              .foregroundStyle(.white)
+              .foregroundStyle(Color(hex: "D6FFA3"))
           }
           .padding(.horizontal, 10)
           .padding(.vertical, 6)
@@ -155,7 +155,7 @@ import WidgetKit
           Spacer()
 
           // Logo at right
-          Image("logo")
+          Image("Logo")
             .resizable()
             .scaledToFit()
             .frame(width: 72, height: 16)
@@ -163,29 +163,26 @@ import WidgetKit
 
         // Inner thought bubble in the middle (where title was)
         let thoughtText = contentState.innerThought ?? "..."
-        HStack(alignment: .center, spacing: 12) {
+        HStack(alignment: .bottom) {
           // Dog emoji/image on the left
-          if let imageName = contentState.imageName {
-            Image.dynamic(assetNameOrPath: imageName)
-              .resizable()
-              .scaledToFit()
-              .frame(width: 48, height: 48)
-              .clipShape(Circle())
-          }
+          
+          Text("🐶")
+            .font(.system(size: 36, weight: .semibold))
 
           // Inner thought text bubble
           Text(thoughtText)
             .font(.body)
             .foregroundStyle(.white)
             .padding(.horizontal, 16)
-            .padding(.vertical, 12)
+            .padding(.leading, 34)
+            .padding(.vertical, 10)
             .background(
               Image("ThoughtBg")
                 .resizable(capInsets: EdgeInsets(
-                  top: 15,
-                  leading: 20,
-                  bottom: 15,
-                  trailing: 20
+                  top: 25,
+                  leading: 60,
+                  bottom: 25,
+                  trailing: 25
                 ))
             )
             .frame(maxWidth: .infinity, alignment: .leading)
