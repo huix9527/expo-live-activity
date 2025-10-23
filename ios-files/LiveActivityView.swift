@@ -130,29 +130,40 @@ import WidgetKit
           ?? defaultPadding
       )
 
-      VStack(alignment: .leading, spacing: 16) {
-        // Time badge at top left
-        if let timeText = contentState.time ?? attributes.timePlaceholder {
-          HStack(spacing: 6) {
-            Circle()
-              .fill(Color.green)
-              .frame(width: 8, height: 8)
+      VStack(alignment: .leading, spacing: 12) {
+        // Time badge and logo row
+        if let timeText = contentState.time ?? "--:--" {
+          HStack {
+            // Time badge at left
+            HStack(spacing: 6) {
+              Circle()
+                .fill(Color.green)
+                .frame(width: 8, height: 8)
 
-            Text(timeText)
-              .font(.subheadline)
-              .fontWeight(.medium)
-              .foregroundStyle(.white)
+              Text(timeText)
+                .font(.subheadline)
+                .fontWeight(.medium)
+                .foregroundStyle(.white)
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 6)
+            .background(
+              Capsule()
+                .fill(Color(hex: "D6FFA3").opacity(0.2))
+            )
+
+            Spacer()
+
+            // Logo at right
+            Image("logo")
+              .resizable()
+              .scaledToFit()
+              .frame(width: 72, height: 16)
           }
-          .padding(.horizontal, 10)
-          .padding(.vertical, 6)
-          .background(
-            Capsule()
-              .fill(Color.white.opacity(0.2))
-          )
         }
 
         // Inner thought bubble in the middle (where title was)
-        if let thoughtText = contentState.innerThought ?? attributes.innerThoughtPlaceholder {
+        if let thoughtText = contentState.innerThought ?? "..." {
           HStack(alignment: .center, spacing: 12) {
             // Dog emoji/image on the left
             if let imageName = contentState.imageName {
@@ -186,8 +197,8 @@ import WidgetKit
       .background(
         LinearGradient(
           colors: [
-            Color(hex: "001A72"),  // 深蓝
-            Color(hex: "38ACDD")   // 浅蓝
+            Color(hex: "252525").opacity(0.6),  // 60% 透明度
+            Color(hex: "202020")                 // 100% 不透明
           ],
           startPoint: .top,
           endPoint: .bottom
