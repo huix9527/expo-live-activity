@@ -174,7 +174,7 @@ import WidgetKit
             .font(.body)
             .foregroundStyle(.white)
             .padding(.horizontal, 16)
-            .padding(.leading, 34)
+            .padding(.leading, 16)
             .padding(.vertical, 10)
             .background(
               Image("ThoughtBg")
@@ -188,6 +188,7 @@ import WidgetKit
             .frame(maxWidth: .infinity, alignment: .leading)
         }
       }
+      .frame(maxWidth: .infinity, maxHeight: .infinity)
       .padding(EdgeInsets(top: top, leading: leading, bottom: bottom, trailing: trailing))
       .background(
         LinearGradient(
@@ -198,6 +199,7 @@ import WidgetKit
           startPoint: .top,
           endPoint: .bottom
         )
+        .ignoresSafeArea()
       )
     }
   }
