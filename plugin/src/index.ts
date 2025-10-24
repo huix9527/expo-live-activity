@@ -17,7 +17,7 @@ const withWidgetsAndLiveActivities: LiveActivityConfigPlugin = (config, props) =
     infoPlist: {
       ...config.ios?.infoPlist,
       NSSupportsLiveActivities: true,
-      NSSupportsLiveActivitiesFrequentUpdates: false,
+      NSSupportsLiveActivitiesFrequentUpdates: true,
     },
   }
 
