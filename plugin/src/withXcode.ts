@@ -21,6 +21,7 @@ export const withXcode: ConfigPlugin<{
     const groupName = 'Embed Foundation Extensions'
     const { platformProjectRoot } = config.modRequest
     const marketingVersion = config.version
+    const appleTeamId = config.ios?.appleTeamId
 
     const targetPath = path.join(platformProjectRoot, targetName)
 
@@ -32,6 +33,7 @@ export const withXcode: ConfigPlugin<{
       bundleIdentifier,
       deploymentTarget,
       marketingVersion,
+      appleTeamId,
     })
 
     const productFile = addProductFile(xcodeProject, {

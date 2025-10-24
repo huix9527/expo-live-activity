@@ -8,12 +8,14 @@ export function addXCConfigurationList(
     bundleIdentifier,
     deploymentTarget,
     marketingVersion,
+    appleTeamId,
   }: {
     targetName: string
     currentProjectVersion: string
     bundleIdentifier: string
     deploymentTarget: string
     marketingVersion?: string
+    appleTeamId?: string
   }
 ) {
   const commonBuildSettings: any = {
@@ -30,7 +32,7 @@ export function addXCConfigurationList(
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = G76836P2D4;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				
+
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -54,7 +56,11 @@ export function addXCConfigurationList(
     SWIFT_OPTIMIZATION_LEVEL: `"-Onone"`,
     CODE_SIGN_ENTITLEMENTS: `"${targetName}/${targetName}.entitlements"`,
     APPLICATION_EXTENSION_API_ONLY: '"YES"',
-    // DEVELOPMENT_TEAM: `"G76836P2D4"`,
+    // 自动签名配置
+    CODE_SIGN_STYLE: 'Automatic',
+    CODE_SIGN_IDENTITY: '"Apple Development"',
+    // 从 app.json 的 ios.appleTeamId 读取，如果没有则继承主 App 的配置
+    ...(appleTeamId ? { DEVELOPMENT_TEAM: `"${appleTeamId}"` } : { DEVELOPMENT_TEAM: '$(inherited)' }),
   }
 
   const buildConfigurationsList = [
