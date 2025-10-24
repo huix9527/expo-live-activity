@@ -77,36 +77,71 @@ export function getWidgetFiles(targetPath: string) {
 
     const files = fs.readdirSync(imageAssetsPath)
 
+    // Group images by base name
+    const imageGroups: { [key: string]: { filename: string; scale: string }[] } = {}
+
     files.forEach((file) => {
       if (path.extname(file).match(/\.(png|jpg|jpeg)$/)) {
-        const source = path.join(imageAssetsPath, file)
-        const imageSetDir = path.join(imagesXcassetsTarget, `${path.basename(file, path.extname(file))}.imageset`)
+        // Extract base name and scale from filename
+        const fileNameWithoutExt = path.basename(file, path.extname(file))
+        const scaleMatch = fileNameWithoutExt.match(/^(.+?)(@2x|@3x)?$/)
 
-        // Create the .imageset directory if it doesn't exist
-        if (!fs.existsSync(imageSetDir)) {
-          fs.mkdirSync(imageSetDir, { recursive: true })
+        if (scaleMatch) {
+          const baseName = scaleMatch[1]
+          const scaleSuffix = scaleMatch[2] || ''
+          const scale = scaleSuffix === '@2x' ? '2x' : scaleSuffix === '@3x' ? '3x' : '1x'
+
+          if (!imageGroups[baseName]) {
+            imageGroups[baseName] = []
+          }
+
+          imageGroups[baseName].push({ filename: file, scale })
         }
-
-        // Copy image file to the .imageset directory
-        const destPath = path.join(imageSetDir, file)
-        fs.copyFileSync(source, destPath)
-
-        // Create Contents.json file
-        const contentsJson = {
-          images: [
-            {
-              filename: file,
-              idiom: 'universal',
-            },
-          ],
-          info: {
-            author: 'xcode',
-            version: 1,
-          },
-        }
-
-        fs.writeFileSync(path.join(imageSetDir, 'Contents.json'), JSON.stringify(contentsJson, null, 2))
       }
+    })
+
+    // Process each image group
+    Object.entries(imageGroups).forEach(([baseName, images]) => {
+      const imageSetDir = path.join(imagesXcassetsTarget, `${baseName}.imageset`)
+
+      // Create the .imageset directory if it doesn't exist
+      if (!fs.existsSync(imageSetDir)) {
+        fs.mkdirSync(imageSetDir, { recursive: true })
+      }
+
+      // Copy all image files to the .imageset directory
+      images.forEach(({ filename }) => {
+        const source = path.join(imageAssetsPath, filename)
+        const destPath = path.join(imageSetDir, filename)
+        fs.copyFileSync(source, destPath)
+      })
+
+      // Create Contents.json with all scales
+      const contentsJson = {
+        images: [
+          {
+            filename: images.find((img) => img.scale === '1x')?.filename,
+            idiom: 'universal',
+            scale: '1x',
+          },
+          {
+            filename: images.find((img) => img.scale === '2x')?.filename,
+            idiom: 'universal',
+            scale: '2x',
+          },
+          {
+            filename: images.find((img) => img.scale === '3x')?.filename,
+            idiom: 'universal',
+            scale: '3x',
+          },
+        ].filter((img) => img.filename !== undefined),
+        info: {
+          author: 'xcode',
+          version: 1,
+        },
+      }
+
+      fs.writeFileSync(path.join(imageSetDir, 'Contents.json'), JSON.stringify(contentsJson, null, 2))
     })
   } else {
     console.warn(
