@@ -193,8 +193,8 @@ import WidgetKit
       .background(
         LinearGradient(
           colors: [
-            Color(hex: "252525").opacity(0.6),  // 60% 透明度
-            Color(hex: "202020")                 // 100% 不透明
+            Color(hex: "252525"),
+            Color(hex: "252525")                 // 100% 不透明
           ],
           startPoint: .top,
           endPoint: .bottom
