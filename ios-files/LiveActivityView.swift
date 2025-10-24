@@ -155,7 +155,7 @@ import WidgetKit
           Spacer()
 
           // Logo at right
-          Image("Logo")
+          Image.dynamic(assetNameOrPath:"Logo")
             .resizable()
             .scaledToFit()
             .frame(width: 72, height: 16)
@@ -178,7 +178,7 @@ import WidgetKit
             .padding(.leading, 16)
             .padding(.vertical, 10)
             .background(
-              Image("ThoughtBg")
+              Image.dynamic(assetNameOrPath: "ThoughtBg")
                 .resizable(capInsets: EdgeInsets(
                   top: 25,
                   leading: 60,
