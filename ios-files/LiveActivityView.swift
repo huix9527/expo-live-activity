@@ -173,6 +173,7 @@ import WidgetKit
           Text(thoughtText)
             .font(.body)
             .foregroundStyle(.white)
+            .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 16)
             .padding(.leading, 16)
             .padding(.vertical, 10)
@@ -185,7 +186,6 @@ import WidgetKit
                   trailing: 25
                 ))
             )
-            .frame(maxWidth: .infinity, alignment: .leading)
         }
       }
       .frame(maxWidth: .infinity, maxHeight: .infinity)
