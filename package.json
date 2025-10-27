@@ -36,8 +36,10 @@
   },
   "license": "MIT",
   "homepage": "https://github.com/software-mansion-labs/expo-live-activity#readme",
+  "dependencies": {
+    "typescript": "~5.8.3"
+  },
   "devDependencies": {
-    "typescript": "~5.8.3",
     "@types/react": "~19.1.0",
     "eslint": "^9.33.0",
     "eslint-config-expo": "^9.2.0",
