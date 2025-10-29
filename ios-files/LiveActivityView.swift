@@ -163,11 +163,12 @@ import WidgetKit
 
         // Inner thought bubble in the middle (where title was)
         let thoughtText = contentState.innerThought ?? "..."
-        HStack(alignment: .bottom) {
+        HStack(alignment: .bottom, spacing: 0) {
           // Dog emoji/image on the left
-          
+
           Text("🐶")
             .font(.system(size: 36, weight: .semibold))
+            .padding(.bottom, -7)
 
           // Inner thought text bubble
           Text(thoughtText)
