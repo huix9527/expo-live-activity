@@ -7,7 +7,7 @@ interface Options {
 export function getWidgetExtensionEntitlements(_iosConfig: ExportedConfig['ios'], _options: Options | undefined = {}) {
   const entitlements: InfoPlist = {}
 
-  addApplicationGroupsEntitlement(entitlements)
+  addApplicationGroupsEntitlement(entitlements, _options?.groupIdentifier)
 
   return entitlements
 }
