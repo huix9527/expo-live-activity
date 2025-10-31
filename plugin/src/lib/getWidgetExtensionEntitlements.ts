@@ -13,11 +13,11 @@ export function getWidgetExtensionEntitlements(_iosConfig: ExportedConfig['ios']
 }
 
 export function addApplicationGroupsEntitlement(entitlements: InfoPlist, groupIdentifier?: string) {
-  // if (groupIdentifier) {
-  //   const existingApplicationGroups = (entitlements["com.apple.security.application-groups"] as string[]) ?? [];
+  if (groupIdentifier) {
+    const existingApplicationGroups = (entitlements["com.apple.security.application-groups"] as string[]) ?? [];
 
-  //   entitlements["com.apple.security.application-groups"] = [groupIdentifier, ...existingApplicationGroups];
-  // }
+    entitlements["com.apple.security.application-groups"] = [groupIdentifier, ...existingApplicationGroups];
+  }
 
   return entitlements
 }

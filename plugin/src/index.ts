@@ -31,8 +31,8 @@ const withWidgetsAndLiveActivities: LiveActivityConfigPlugin = (config, props) =
         deploymentTarget,
       },
     ],
-    [withWidgetExtensionEntitlements, { targetName }],
-    [withConfig, { targetName, bundleIdentifier }],
+    [withWidgetExtensionEntitlements, { targetName, groupIdentifier: props?.groupIdentifier }],
+    [withConfig, { targetName, bundleIdentifier, groupIdentifier: props?.groupIdentifier }],
   ])
 
   if (props?.enablePushNotifications) {
