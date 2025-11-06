@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 /// Helper class for reading data from App Groups shared container
 /// Used by Live Activity Widget to fetch data shared from main app
