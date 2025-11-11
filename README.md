@@ -135,6 +135,7 @@ The `state` object should include:
   };
   imageName?: string; // Matches the name of the image in 'assets/liveActivity'
   dynamicIslandImageName?: string; // Matches the name of the image in 'assets/liveActivity'
+  species?: string; // Species or category information to display in the Live Activity
 };
 ```
 
@@ -174,6 +175,7 @@ const state: LiveActivity.LiveActivityState = {
   },
   imageName: 'live_activity_image',
   dynamicIslandImageName: 'dynamic_island_image',
+  species: 'premium',
 }
 
 const config: LiveActivity.LiveActivityConfig = {
@@ -239,7 +241,8 @@ Example payload for starting Live Activity:
       "timerEndDateInMilliseconds": 1754410997000,
       "progress": 0.5,
       "imageName": "live_activity_image",
-      "dynamicIslandImageName": "dynamic_island_image"
+      "dynamicIslandImageName": "dynamic_island_image",
+      "species": "category_name"
     },
     "timestamp": 1754491435000, // timestamp of when the push notification was sent
     "attributes-type": "LiveActivityAttributes",
@@ -276,7 +279,8 @@ Example payload for updating Live Activity:
       "subtitle": "World",
       "timerEndDateInMilliseconds": 1754064245000,
       "imageName": "live_activity_image",
-      "dynamicIslandImageName": "dynamic_island_image"
+      "dynamicIslandImageName": "dynamic_island_image",
+      "species": "category_name"
     },
     "timestamp": 1754063621319 // timestamp of when the push notification was sent
   }
