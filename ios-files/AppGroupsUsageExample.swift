@@ -2,6 +2,8 @@ import ActivityKit
 import SwiftUI
 import WidgetKit
 
+/*
+
 /// Example implementation showing how to read data from App Groups in Live Activity Widget
 /// This demonstrates the complete workflow for accessing shared pet data
 
@@ -312,3 +314,4 @@ struct DebugAppGroupsView: View {
 }
 
 #endif
+*/
