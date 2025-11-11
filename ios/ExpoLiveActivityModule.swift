@@ -31,6 +31,9 @@ public class ExpoLiveActivityModule: Module {
 
     @Field
     var dynamicIslandImageName: String?
+
+    @Field
+    var species: String?
   }
 
   struct LiveActivityConfig: Record {
@@ -257,7 +260,8 @@ public class ExpoLiveActivityModule: Module {
           time: state.time,
           innerThought: state.innerThought,
           timerEndDateInMilliseconds: state.progressBar?.date,
-          progress: state.progressBar?.progress
+          progress: state.progressBar?.progress,
+          species: state.species
         )
 
         let activity = try Activity.request(
@@ -295,7 +299,8 @@ public class ExpoLiveActivityModule: Module {
           time: state.time,
           innerThought: state.innerThought,
           timerEndDateInMilliseconds: state.progressBar?.date,
-          progress: state.progressBar?.progress
+          progress: state.progressBar?.progress,
+          species: state.species
         )
         try await updateImages(state: state, newState: &newState)
         await activity.end(
@@ -324,7 +329,8 @@ public class ExpoLiveActivityModule: Module {
           time: state.time,
           innerThought: state.innerThought,
           timerEndDateInMilliseconds: state.progressBar?.date,
-          progress: state.progressBar?.progress
+          progress: state.progressBar?.progress,
+          species: state.species
         )
         try await updateImages(state: state, newState: &newState)
         await activity.update(ActivityContent(state: newState, staleDate: nil))

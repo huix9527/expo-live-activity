@@ -11,6 +11,7 @@ struct LiveActivityAttributes: ActivityAttributes {
     var progress: Double?
     var imageName: String?
     var dynamicIslandImageName: String?
+    var species: String?
   }
 
   var name: String

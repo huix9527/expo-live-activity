@@ -25,6 +25,7 @@ export type LiveActivityState = {
   progressBar?: ProgressBarType
   imageName?: string
   dynamicIslandImageName?: string
+  species?: string
 }
 
 export type NativeLiveActivityState = {
@@ -34,6 +35,7 @@ export type NativeLiveActivityState = {
   progress?: number
   imageName?: string
   dynamicIslandImageName?: string
+  species?: string
 }
 
 export type Padding =
