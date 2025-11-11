@@ -57,6 +57,18 @@ import WidgetKit
       }
     }
 
+    private var petEmoji: String {
+      let species = contentState.species ?? attributes.petSpecies ?? "dog"
+      switch species.lowercased() {
+      case "cat", "feline", "猫":
+        return "🐱"
+      case "dog", "canine", "犬", "狗":
+        return "🐶"
+      default:
+        return "🐶"
+      }
+    }
+
     #if DEBUG
     private func captureDebugInfo() {
       var info = ""
@@ -261,7 +273,7 @@ import WidgetKit
               .fill(Color.gray.opacity(0.5))
               .frame(width: 36, height: 36)
               .overlay(
-                Text("🐶")
+                Text(petEmoji)
                   .font(.system(size: 20, weight: .semibold))
               )
               .padding(.bottom, -7)
