@@ -267,18 +267,13 @@ import WidgetKit
               .scaledToFill()
               .frame(width: 36, height: 36)
               .clipShape(Circle())
-              .padding(.bottom, -7)
+              .padding(.bottom, 0)
           } else {
-            Circle()
-              .fill(Color.gray.opacity(0.5))
-              .frame(width: 36, height: 36)
-              .overlay(
-                Text(petEmoji)
-                  .font(.system(size: 20, weight: .semibold))
-              )
+            Text(petEmoji)
+              .font(.system(size: 36, weight: .semibold))
               .padding(.bottom, -7)
           }
-
+          
           // Inner thought text bubble
           Text(thoughtText)
             .font(.body)
